@@ -9,7 +9,7 @@ using Microsoft.Win32;
 using MidiUtils.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Ymf825;
+using Ymf825.Driver;
 using Ymf825Server;
 
 namespace Ymf825MidiDriver

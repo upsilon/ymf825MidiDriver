@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using Ymf825;
+using Ymf825.Driver;
 
 namespace Ymf825MidiDriver
 {
