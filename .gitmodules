@@ -4,3 +4,6 @@
 [submodule "submodule/MidiUtils"]
 	path = submodule/MidiUtils
 	url = git://github.com/upsilon/MidiUtils.git
+[submodule "submodule/Ymf825.Spi"]
+	path = submodule/Ymf825.Spi
+	url = git://github.com/upsilon/Ymf825.Spi.git
