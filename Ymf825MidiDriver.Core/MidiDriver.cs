@@ -7,7 +7,7 @@ using Ymf825.Driver;
 
 namespace Ymf825MidiDriver
 {
-    internal class MidiDriver
+    public class MidiDriver
     {
         #region -- Private Fields --
 
