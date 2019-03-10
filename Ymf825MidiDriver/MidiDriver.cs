@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MidiUtils.IO;
 using Ymf825;
+using Ymf825.Driver;
 
 namespace Ymf825MidiDriver
 {

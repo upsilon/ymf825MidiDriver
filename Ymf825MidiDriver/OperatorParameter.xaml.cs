@@ -11,7 +11,7 @@ namespace Ymf825MidiDriver
         #region -- Public Fields --
 
         public static readonly RoutedEvent TonePropertyChangedEvent = EventManager.RegisterRoutedEvent("TonePropertyChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(OperatorParameter));
-        public static readonly DependencyProperty SelectedOperatorProperty = DependencyProperty.Register("SelectedOperator", typeof(Ymf825.OperatorParameter), typeof(OperatorParameter), new PropertyMetadata(default(Ymf825.OperatorParameter)));
+        public static readonly DependencyProperty SelectedOperatorProperty = DependencyProperty.Register("SelectedOperator", typeof(Ymf825.Driver.OperatorParameter), typeof(OperatorParameter), new PropertyMetadata(default(Ymf825.Driver.OperatorParameter)));
 
         #endregion
 
@@ -19,10 +19,10 @@ namespace Ymf825MidiDriver
 
         public int? OperatorNumber { get; set; }
 
-        public Ymf825.OperatorParameter SelectedOperator
+        public Ymf825.Driver.OperatorParameter SelectedOperator
         {
             // ReSharper disable once PossibleNullReferenceException
-            get => (Ymf825.OperatorParameter)GetValue(SelectedOperatorProperty);
+            get => (Ymf825.Driver.OperatorParameter)GetValue(SelectedOperatorProperty);
             set => SetValue(SelectedOperatorProperty, value);
         }
 

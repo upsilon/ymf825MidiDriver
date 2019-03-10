@@ -94,13 +94,14 @@
       <Project>{df42a16c-d481-45a5-af57-06fd0b92d8c7}</Project>
       <Name>RegisterMap</Name>
     </ProjectReference>
-    <ProjectReference Include="..\submodule\ymf825\Ymf825\Ymf825.csproj">
-      <Project>{7b92175f-edaf-42bf-88a7-d113c1c40aff}</Project>
-      <Name>Ymf825</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\comments.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Ymf825">
+      <Version>2.0.0</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
