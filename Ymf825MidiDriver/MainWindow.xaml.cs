@@ -47,7 +47,7 @@ namespace Ymf825MidiDriver
 
         private readonly Project project = new Project();
 
-        private MidiIn midiIn;
+        private IMidiIn midiIn;
         private MidiDriver midiDriver;
 
         private string filePath;
@@ -378,7 +378,7 @@ namespace Ymf825MidiDriver
             {
                 try
                 {
-                    midiIn = new MidiIn(ComboBoxMidiDevice.SelectedIndex);
+                    midiIn = new WinmmMidiIn(ComboBoxMidiDevice.SelectedIndex);
                     midiDriver = new MidiDriver(toneItems, equalizerItems, midiIn, ServerWindow.Driver);
                     midiDriver.Start();
                 }
@@ -592,7 +592,7 @@ namespace Ymf825MidiDriver
         {
             midiDevices.Clear();
 
-            foreach (var midiDevice in MidiIn.InputDeviceNames)
+            foreach (var midiDevice in WinmmMidiIn.InputDeviceNames)
                 midiDevices.Add(midiDevice);
 
             if (midiDevices.Count > 0)
