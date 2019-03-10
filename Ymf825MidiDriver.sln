@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ymf825MidiDriver", "Ymf825M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ymf825Server", "Ymf825Server\Ymf825Server.csproj", "{399E3A23-4F60-46A4-8824-BE582099E51B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MidiUtils", "submodule\MidiUtils\src\MidiUtils.csproj", "{76C90E84-9450-4635-897D-2C065F8DFC17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MidiUtils", "submodule\MidiUtils\src\MidiUtils.csproj", "{76C90E84-9450-4635-897D-2C065F8DFC17}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegisterMap", "submodule\RegisterMap\RegisterMap\RegisterMap.csproj", "{DF42A16C-D481-45A5-AF57-06FD0B92D8C7}"
 EndProject
