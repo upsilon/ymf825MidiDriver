@@ -51,6 +51,9 @@
       <DependentUpon>ServerWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trace\DataBurstWriteEventArgs.cs" />
+    <Compile Include="Trace\DataTransferedEventArgs.cs" />
+    <Compile Include="Trace\Ymf825Tracer.cs" />
     <EmbeddedResource Include="ServerWindow.resx">
       <DependentUpon>ServerWindow.cs</DependentUpon>
     </EmbeddedResource>

@@ -6,6 +6,7 @@ using RegisterMap;
 using Ymf825;
 using Ymf825.Driver;
 using Ymf825.IO;
+using Ymf825Server.Trace;
 
 namespace Ymf825Server
 {
@@ -16,7 +17,7 @@ namespace Ymf825Server
         private readonly MapRenderer registerMap;
         private readonly MapRenderer[] toneParameterRegisterMap = new MapRenderer[16];
         private readonly PictureBox[] tonePrameterPictureBoxes;
-        private IYmf825 ymf825;
+        private Ymf825Tracer ymf825;
 
         #endregion
 
@@ -104,6 +105,14 @@ namespace Ymf825Server
         private void timer_stat_Tick(object sender, EventArgs e)
         {
             label_enteredSection.Text = Driver.EnteredSectionCount.ToString("N0");
+
+            label_writeBytes.Text = ymf825.WriteBytes.ToString("N0");
+            label_burstWriteBytes.Text = ymf825.BurstWriteBytes.ToString("N0");
+            label_readBytes.Text = ymf825.ReadBytes.ToString("N0");
+
+            label_writeCommands.Text = ymf825.WriteCommandCount.ToString("N0");
+            label_burstWriteCommands.Text = ymf825.BurstWriteCommandCount.ToString("N0");
+            label_readCommands.Text = ymf825.ReadCommandCount.ToString("N0");
         }
 
         private void toolStripButton_refresh_Click(object sender, EventArgs e)
@@ -172,8 +181,45 @@ namespace Ymf825Server
         private void ConnectDevice()
         {
             DeviceInfo = D2XxSpi.GetDeviceInfoList()[toolStripComboBox_deviceList.SelectedIndex];
-            ymf825 = new AeFt232HInterface(toolStripComboBox_deviceList.SelectedIndex);
+            ymf825 = new Ymf825Tracer(new AeFt232HInterface(toolStripComboBox_deviceList.SelectedIndex));
             Driver = new Ymf825Driver(ymf825);
+
+            ymf825.DataWrote += (sender, args) =>
+            {
+                registerMap.SetData(args.Address, args.Data);
+            };
+            ymf825.DataBurstWrote += (sender, args) =>
+            {
+                if (args.Data.Count <= 0)
+                    return;
+
+                if (args.Address == 0x07)
+                {
+                    registerMap.SetData(args.Address, args.Data.Last());
+
+                    var toneNumber = args.Data[0] - 0x80;
+
+                    if (toneNumber < 0 || toneNumber > 16 || args.Data.Count < toneNumber * 30 + 5)
+                    {
+                        Console.WriteLine($"Invalid BurstWrite Data - Tone Number: {toneNumber}, Data Size: {args.Data.Count} (required {toneNumber * 30 + 5})");
+                        return;
+                    }
+
+                    for (var i = 0; i < toneNumber; i++)
+                        for (var j = 0; j < 30; j++)
+                            toneParameterRegisterMap[i].SetData(j, args.Data[i * 30 + j + 1]);
+                }
+                else if (args.Address >= 0x20 || args.Address <= 0x22)
+                {
+                    var eq = args.Address - 0x20;
+
+                    if (args.Data.Count < 5)
+                        return;
+
+                    for (var i = 0; i < 5; i++)
+                        registerMap.SetData(0x23 + 3 * eq + i, args.Data[i]);
+                }
+            };
 
             SpiConnected = true;
             Driver.ResetHardware();
