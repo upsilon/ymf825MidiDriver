@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using MidiUtils.IO;
 using Ymf825;
+using Ymf825.Driver;
 
 namespace Ymf825MidiDriver
 {
-    internal class MidiDriver
+    public class MidiDriver
     {
         #region -- Private Fields --
 
@@ -36,7 +37,7 @@ namespace Ymf825MidiDriver
 
         public IList<EqualizerItem> EqualizerItems { get; }
 
-        public MidiIn MidiIn { get; }
+        public IMidiIn MidiIn { get; }
 
         public Ymf825Driver Driver { get; }
 
@@ -44,7 +45,7 @@ namespace Ymf825MidiDriver
 
         #region -- Constructors --
 
-        public MidiDriver(IList<ToneItem> toneItems, IList<EqualizerItem> equalizerItems, MidiIn midiIn, Ymf825Driver driver)
+        public MidiDriver(IList<ToneItem> toneItems, IList<EqualizerItem> equalizerItems, IMidiIn midiIn, Ymf825Driver driver)
         {
             ToneItems = toneItems;
             EqualizerItems = equalizerItems;

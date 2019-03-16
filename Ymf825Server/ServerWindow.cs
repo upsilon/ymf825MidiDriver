@@ -4,7 +4,9 @@ using System.Linq;
 using System.Windows.Forms;
 using RegisterMap;
 using Ymf825;
+using Ymf825.Driver;
 using Ymf825.IO;
+using Ymf825Server.Trace;
 
 namespace Ymf825Server
 {
@@ -15,7 +17,7 @@ namespace Ymf825Server
         private readonly MapRenderer registerMap;
         private readonly MapRenderer[] toneParameterRegisterMap = new MapRenderer[16];
         private readonly PictureBox[] tonePrameterPictureBoxes;
-        private Ymf825.Ymf825 ymf825;
+        private Ymf825Tracer ymf825;
 
         #endregion
 
@@ -23,7 +25,7 @@ namespace Ymf825Server
 
         public bool SpiConnected { get; private set; }
 
-        public DeviceInfo DeviceInfo { get; private set; }
+        public FtDeviceInfo DeviceInfo { get; private set; }
 
         public Ymf825Driver Driver { get; private set; }
 
@@ -151,7 +153,7 @@ namespace Ymf825Server
             for (var i = 0; i < 16; i++)
                 toneParameterRegisterMap[i].ClearAll();
 
-            ymf825.ResetHardware();
+            Driver.ResetHardware();
         }
 
         private void toolStripButton_softReset_Click(object sender, EventArgs e)
@@ -178,8 +180,8 @@ namespace Ymf825Server
 
         private void ConnectDevice()
         {
-            DeviceInfo = Spi.GetDeviceInfoList()[toolStripComboBox_deviceList.SelectedIndex];
-            ymf825 = new CbwYmf825Bb(toolStripComboBox_deviceList.SelectedIndex);
+            DeviceInfo = D2XxSpi.GetDeviceInfoList()[toolStripComboBox_deviceList.SelectedIndex];
+            ymf825 = new Ymf825Tracer(new AeFt232HInterface(toolStripComboBox_deviceList.SelectedIndex));
             Driver = new Ymf825Driver(ymf825);
 
             ymf825.DataWrote += (sender, args) =>
@@ -263,7 +265,7 @@ namespace Ymf825Server
         {
             toolStripComboBox_deviceList.Items.Clear();
 
-            var deviceInfoArray = Spi.GetDeviceInfoList();
+            var deviceInfoArray = D2XxSpi.GetDeviceInfoList();
 
             foreach (var deviceInfo in deviceInfoArray)
             {

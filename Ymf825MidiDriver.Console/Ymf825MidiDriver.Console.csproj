@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>Ymf825MidiDriver</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Device.Gpio" Version="0.1.0-prerelease.19078.2" />
+    <PackageReference Include="Ymf825" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\submodule\MidiUtils\src\MidiUtils.csproj" />
+    <ProjectReference Include="..\submodule\Ymf825.Spi\Ymf825.Spi\Ymf825.Spi.csproj" />
+    <ProjectReference Include="..\Ymf825MidiDriver.Core\Ymf825MidiDriver.Core.csproj" />
+  </ItemGroup>
+
+</Project>

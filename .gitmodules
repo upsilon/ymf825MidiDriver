@@ -3,7 +3,7 @@
 	url = git@github.com:nanase/RegisterMap.git
 [submodule "submodule/MidiUtils"]
 	path = submodule/MidiUtils
-	url = git@github.com:nanase/MidiUtils.git
-[submodule "submodule/ymf825"]
-	path = submodule/ymf825
-	url = git@github.com:nanase/ymf825.git
+	url = git://github.com/upsilon/MidiUtils.git
+[submodule "submodule/Ymf825.Spi"]
+	path = submodule/Ymf825.Spi
+	url = git://github.com/upsilon/Ymf825.Spi.git

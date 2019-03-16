@@ -39,9 +39,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -54,9 +51,6 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="TAlex.WPF.Controls, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TAlex.WPF.Controls.2.0.1.0\lib\net40\TAlex.WPF.Controls.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -97,25 +91,20 @@
     <Compile Include="EnvelopeGraph.xaml.cs">
       <DependentUpon>EnvelopeGraph.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Equalizer.cs" />
     <Compile Include="EqualizerControl\EqualizerGraphControl.xaml.cs">
       <DependentUpon>EqualizerGraphControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="EqualizerControl\EqualizerValueControl.xaml.cs">
       <DependentUpon>EqualizerValueControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EqualizerItem.cs" />
     <Compile Include="Extension.cs" />
-    <Compile Include="MidiDriver.cs" />
     <Compile Include="OperatorEnabledConveter.cs" />
     <Compile Include="AlgorithmConverter.cs" />
     <Compile Include="MidiConnectionConverter.cs" />
-    <Compile Include="Project.cs" />
     <Compile Include="ServerConnectionConverter.cs" />
     <Compile Include="ToneExportWindow.xaml.cs">
       <DependentUpon>ToneExportWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ToneItem.cs" />
     <Compile Include="EqualizerNumberToStringConveter.cs" />
     <Compile Include="ToneNumberToStringConveter.cs" />
     <Compile Include="WaveShape.cs" />
@@ -205,7 +194,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -219,9 +207,9 @@
       <Project>{76c90e84-9450-4635-897d-2c065f8dfc17}</Project>
       <Name>MidiUtils</Name>
     </ProjectReference>
-    <ProjectReference Include="..\submodule\ymf825\Ymf825\Ymf825.csproj">
-      <Project>{7b92175f-edaf-42bf-88a7-d113c1c40aff}</Project>
-      <Name>Ymf825</Name>
+    <ProjectReference Include="..\Ymf825MidiDriver.Core\Ymf825MidiDriver.Core.csproj">
+      <Project>{e8663a96-4a16-41b9-ab88-1663cae1a241}</Project>
+      <Name>Ymf825MidiDriver.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ymf825Server\Ymf825Server.csproj">
       <Project>{399e3a23-4f60-46a4-8824-be582099e51b}</Project>
@@ -269,6 +257,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\asterisk_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>10.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="TAlex.WPF.Controls">
+      <Version>2.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Ymf825">
+      <Version>2.0.0</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
